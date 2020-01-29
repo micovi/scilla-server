@@ -29,16 +29,12 @@ export const check = async (req: Request, res: Response, next: NextFunction) => 
     stdlib: Paths.STDLIB,
   };
 
-  console.log('test');
-
   const toWrite = Object.keys(checkOpt)
     .filter((file) => file !== 'stdlib')
     .map<{ path: string; data: string }>((k: string) => ({
       path: checkOpt[k as keyof typeof checkOpt],
       data: req.body[k] || '',
     }));
-
-    console.log(toWrite);
 
   try {
     await writeFiles(toWrite);
