@@ -47,12 +47,14 @@ export const check = async (req: Request, res: Response, next: NextFunction) => 
     if (err instanceof ScillaError) {
       res.status(400).json({
         result: 'error',
+        type:'scilla',
         message: err.messages,
       });
       return;
     }
     res.status(400).json({
       result: 'error',
+      type:'scilla',
       message: err.message,
     });
   }
